@@ -1,5 +1,5 @@
-import type { AppProps } from 'next/app';
 import { AppCacheProvider } from '@mui/material-nextjs/v14-pagesRouter';
+import type { AppProps } from 'next/app';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';

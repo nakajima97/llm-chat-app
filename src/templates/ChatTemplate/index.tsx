@@ -1,9 +1,10 @@
-import { ChatBaseLayout } from '@/components/layouts/ChatBaseLayout';
+import { ChatBaseLayout } from '@/components/ChatBaseLayout';
+import { SideNavigationBar } from '@/components/SideNavigationBar';
 import { ChatMain } from '@/features/chat/components/ChatMain';
 
 export const ChatTemplate = () => {
 	return (
-		<ChatBaseLayout title="Chat" sideBarContent={<div>sidebar</div>}>
+		<ChatBaseLayout title="Chat" navigationBarContent={<SideNavigationBar />}>
 			<ChatMain />
 		</ChatBaseLayout>
 	);

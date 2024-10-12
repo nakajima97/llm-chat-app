@@ -1,5 +1,5 @@
-import { LoginCard } from '@/features/login/components/LoginCard';
+import { LoginTemplate } from '@/templates/LoginTemplate';
 
 export const LoginPage = () => {
-	return <LoginCard />;
+	return <LoginTemplate />;
 };

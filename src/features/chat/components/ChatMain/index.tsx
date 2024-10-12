@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { ChatForm } from '../ChatForm';
-import { ChatLog } from '../ChatLog';
+import { ChatLogContainer } from '../ChatLogContainer';
 
 export const ChatMain = () => {
 	return (
@@ -13,7 +13,7 @@ export const ChatMain = () => {
 			}}
 		>
 			<Box sx={{ width: '100%', flexGrow: 1 }}>
-				<ChatLog />
+				<ChatLogContainer />
 			</Box>
 			<Box>
 				<ChatForm />

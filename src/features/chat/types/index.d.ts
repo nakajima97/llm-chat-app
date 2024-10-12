@@ -5,3 +5,5 @@ export type ChatType = {
 	role: Role;
 	message: string;
 };
+
+export type ChatLogType = ChatType[];

@@ -29,7 +29,6 @@ export const ChatBaseLayout = ({
 				<Box
 					component="nav"
 					sx={{
-						width: '120px',
 						height: '100%',
 						backgroundColor: theme.palette.grey[100],
 					}}

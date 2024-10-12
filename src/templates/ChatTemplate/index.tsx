@@ -3,7 +3,7 @@ import { ChatMain } from '@/features/chat/components/ChatMain';
 
 export const ChatTemplate = () => {
 	return (
-		<ChatBaseLayout title="Chat" sideBarContent={<div>sidebar</div>}>
+		<ChatBaseLayout title="Chat" navigationBarContent={<div>sidebar</div>}>
 			<ChatMain />
 		</ChatBaseLayout>
 	);

@@ -2,11 +2,15 @@ import { AppBar, Box, Toolbar, useTheme } from '@mui/material';
 
 type Props = {
 	title: string;
-	sideBarContent: React.ReactNode;
+	navigationBarContent: React.ReactNode;
 	children: React.ReactNode;
 };
 
-export const ChatBaseLayout = ({ title, sideBarContent, children }: Props) => {
+export const ChatBaseLayout = ({
+	title,
+	navigationBarContent,
+	children,
+}: Props) => {
 	const theme = useTheme();
 
 	return (
@@ -30,7 +34,7 @@ export const ChatBaseLayout = ({ title, sideBarContent, children }: Props) => {
 						backgroundColor: theme.palette.grey[100],
 					}}
 				>
-					{sideBarContent}
+					{navigationBarContent}
 				</Box>
 				<Box component="main" sx={{ flexGrow: 1, height: '100%' }}>
 					{children}

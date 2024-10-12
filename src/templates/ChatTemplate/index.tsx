@@ -1,7 +1,9 @@
+import { ChatBaseLayout } from '@/components/layouts/ChatBaseLayout';
+
 export const ChatTemplate = () => {
 	return (
-		<div>
-			<h1>ChatTemplate</h1>
-		</div>
+		<ChatBaseLayout title="Chat" sideBarContent={<div>sidebar</div>}>
+			メインだよ
+		</ChatBaseLayout>
 	);
 };

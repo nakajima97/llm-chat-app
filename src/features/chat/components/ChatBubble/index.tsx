@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import type { ChatType } from '../../types';
 
 type Props = {
@@ -7,6 +7,8 @@ type Props = {
 
 export const ChatBubble = ({ chat }: Props) => {
 	const isUser = chat.role === 'user';
+
+	const theme = useTheme();
 
 	return (
 		<Box
@@ -20,8 +22,10 @@ export const ChatBubble = ({ chat }: Props) => {
 			<Box
 				sx={{
 					maxWidth: '80%',
-					backgroundColor: isUser ? '#3f51b5' : '#f3f3f3',
-					color: isUser ? '#fff' : '#000',
+					backgroundColor: isUser
+						? theme.palette.primary.light
+						: theme.palette.grey[300],
+					color: theme.palette.common.black,
 					padding: '8px',
 					borderRadius: isUser ? '16px 0 16px 16px' : '0 16px 16px 16px',
 				}}

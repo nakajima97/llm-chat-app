@@ -12,7 +12,9 @@
 		"test:coverage": "vitest run --coverage",
 		"e2e": "playwright test",
 		"bc": "biome check --write ./src",
-		"prepare": "husky"
+		"prepare": "husky",
+		"storybook": "storybook dev -p 6006 --ci",
+		"build-storybook": "storybook build"
 	},
 	"dependencies": {
 		"@emotion/cache": "^11.13.1",
@@ -31,7 +33,16 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
+		"@chromatic-com/storybook": "^1.9.0",
 		"@playwright/test": "^1.45.1",
+		"@storybook/addon-essentials": "^8.3.5",
+		"@storybook/addon-interactions": "^8.3.5",
+		"@storybook/addon-links": "^8.3.5",
+		"@storybook/addon-onboarding": "^8.3.5",
+		"@storybook/blocks": "^8.3.5",
+		"@storybook/nextjs": "^8.3.5",
+		"@storybook/react": "^8.3.5",
+		"@storybook/test": "^8.3.5",
 		"@testing-library/react": "^16.0.0",
 		"@types/node": "^20",
 		"@types/react": "^18",
@@ -41,6 +52,7 @@
 		"husky": "^9.1.6",
 		"jsdom": "^24.1.0",
 		"lint-staged": "^15.2.10",
+		"storybook": "^8.3.5",
 		"typescript": "^5",
 		"vitest": "^2.0.2"
 	},

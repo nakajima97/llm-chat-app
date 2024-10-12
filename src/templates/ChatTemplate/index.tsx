@@ -1,5 +1,5 @@
-import { ChatBaseLayout } from '@/components/layouts/ChatBaseLayout';
-import { SideNavigationBar } from '@/components/layouts/SideNavigationBar';
+import { ChatBaseLayout } from '@/components/ChatBaseLayout';
+import { SideNavigationBar } from '@/components/SideNavigationBar';
 import { ChatMain } from '@/features/chat/components/ChatMain';
 
 export const ChatTemplate = () => {

@@ -1,12 +1,4 @@
-import {
-	Box,
-	Button,
-	Card,
-	Grid2,
-	Link,
-	TextField,
-	Typography,
-} from '@mui/material';
+import { Box, Button, Card, TextField, Typography } from '@mui/material';
 
 export const LoginCard = () => {
 	return (

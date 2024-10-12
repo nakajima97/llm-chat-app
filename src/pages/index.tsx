@@ -1,3 +1,5 @@
+import { LoginPage } from '@/screens/loginPage';
+
 export default function Home() {
-	return <main>Hello World!!</main>;
+	return <LoginPage />;
 }

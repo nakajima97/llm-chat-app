@@ -12,10 +12,10 @@ export const ChatMain = () => {
 				flexDirection: 'column',
 			}}
 		>
-			<Box sx={{ width: '100%', flexGrow: 1 }}>
+			<Box sx={{ width: '100%', flexGrow: 1, overflowY: 'scroll' }}>
 				<ChatLogContainer />
 			</Box>
-			<Box>
+			<Box sx={{ width: '100%' }}>
 				<ChatForm />
 			</Box>
 		</Box>

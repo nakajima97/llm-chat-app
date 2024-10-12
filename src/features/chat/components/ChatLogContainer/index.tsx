@@ -15,5 +15,5 @@ export const ChatLogContainer = () => {
 		},
 	];
 
-	return <ChatLog chats={chats} />;
+	return <ChatLog chatLog={chats} />;
 };

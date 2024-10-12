@@ -3,10 +3,10 @@ import type { ChatLogType } from '../../types';
 import { ChatBubble } from '../ChatBubble';
 
 type Props = {
-	chats: ChatLogType;
+	chatLog: ChatLogType;
 };
 
-export const ChatLog = ({ chats }: Props) => {
+export const ChatLog = ({ chatLog }: Props) => {
 	return (
 		<Box
 			sx={{
@@ -18,7 +18,7 @@ export const ChatLog = ({ chats }: Props) => {
 				padding: '8px',
 			}}
 		>
-			{chats?.map((chat) => (
+			{chatLog?.map((chat) => (
 				<ChatBubble key={chat.id} chat={chat} />
 			))}
 		</Box>

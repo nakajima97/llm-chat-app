@@ -6,19 +6,28 @@ type Props = {
 };
 
 export const ChatBubble = ({ chat }: Props) => {
+	const isUser = chat.role === 'user';
+
 	return (
 		<Box
 			sx={{
-				maxWidth: '90%',
+				width: '100%',
 				padding: '10px',
-				borderRadius: '16px',
-				marginBottom: '10px',
 				display: 'flex',
-				alignItems: chat.role === 'user' ? 'end' : 'start',
-				backgroundColor: chat.role === 'user' ? '#3f51b5' : '#f3f3f3',
+				justifyContent: isUser ? 'end' : 'start',
 			}}
 		>
-			{chat.message}
+			<Box
+				sx={{
+					maxWidth: '80%',
+					backgroundColor: isUser ? '#3f51b5' : '#f3f3f3',
+					color: isUser ? '#fff' : '#000',
+					padding: '8px',
+					borderRadius: isUser ? '16px 0 16px 16px' : '0 16px 16px 16px',
+				}}
+			>
+				{chat.message}
+			</Box>
 		</Box>
 	);
 };

@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import type { ChatLogType } from '../../types';
 import { ChatBubble } from '../ChatBubble';
 
@@ -7,6 +7,8 @@ type Props = {
 };
 
 export const ChatLog = ({ chatLog }: Props) => {
+	const theme = useTheme();
+
 	return (
 		<Box
 			sx={{
@@ -14,8 +16,8 @@ export const ChatLog = ({ chatLog }: Props) => {
 				height: '100%',
 				display: 'flex',
 				flexDirection: 'column',
-				gap: '8px',
-				padding: '8px',
+				gap: theme.spacing(1),
+				padding: theme.spacing(1),
 			}}
 		>
 			{chatLog?.map((chat) => (

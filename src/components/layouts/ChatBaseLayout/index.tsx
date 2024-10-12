@@ -1,4 +1,4 @@
-import { AppBar, Box, Toolbar } from '@mui/material';
+import { AppBar, Box, Toolbar, useTheme } from '@mui/material';
 
 type Props = {
 	title: string;
@@ -7,6 +7,8 @@ type Props = {
 };
 
 export const ChatBaseLayout = ({ title, sideBarContent, children }: Props) => {
+	const theme = useTheme();
+
 	return (
 		<Box
 			sx={{
@@ -22,7 +24,11 @@ export const ChatBaseLayout = ({ title, sideBarContent, children }: Props) => {
 			<Box sx={{ flexGrow: 1, display: 'flex' }}>
 				<Box
 					component="nav"
-					sx={{ width: '120px', height: '100%', backgroundColor: 'lightgray' }}
+					sx={{
+						width: '120px',
+						height: '100%',
+						backgroundColor: theme.palette.grey[100],
+					}}
 				>
 					{sideBarContent}
 				</Box>

@@ -14,7 +14,7 @@ export const ChatBubble = ({ chat }: Props) => {
 		<Box
 			sx={{
 				width: '100%',
-				padding: '10px',
+				padding: theme.spacing(1),
 				display: 'flex',
 				justifyContent: isUser ? 'end' : 'start',
 			}}
@@ -26,7 +26,7 @@ export const ChatBubble = ({ chat }: Props) => {
 						? theme.palette.primary.light
 						: theme.palette.grey[300],
 					color: theme.palette.common.black,
-					padding: '8px',
+					padding: theme.spacing(1),
 					borderRadius: isUser ? '16px 0 16px 16px' : '0 16px 16px 16px',
 				}}
 			>

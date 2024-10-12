@@ -1,16 +1,25 @@
-import { Box, Button, Card, TextField, Typography } from '@mui/material';
+import {
+	Box,
+	Button,
+	Card,
+	TextField,
+	Typography,
+	useTheme,
+} from '@mui/material';
 
 export const LoginCard = () => {
+	const theme = useTheme();
+
 	return (
 		<Card
 			raised
 			sx={{
 				maxWidth: '400px',
-				padding: '8px',
+				padding: theme.spacing(1),
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
-				gap: '8px',
+				gap: theme.spacing(1),
 			}}
 		>
 			<Typography component="h1" variant="h5">

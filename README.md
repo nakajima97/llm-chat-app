@@ -1,3 +1,7 @@
+## 概要
+LLMとチャットできるアプリ  
+サーバは以下リポジトリ  
+https://github.com/nakajima97/llm-chat-app-server
 ## versions
 - Node.js 22.4.1
 
@@ -9,15 +13,15 @@ fix
 `yarn biome format --write ./src`
 
 ## lint
-check
+check  
 `yarn biome lint ./src`
 
 fix  
 `yarn biome lint --write ./src`
 
 ## format & lint
-check
+check  
 `yarn biome check ./src`
 
-fix
+fix  
 `yarn biome check --write ./src`

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-type SendChatArgument = {
+export type SendChatArgument = {
   message: string;
 }
 
@@ -47,8 +47,16 @@ export const useSendChat = () => {
     }
   }, [])
 
+  /**
+   * 最新の回答をクリアする
+   */
+  const clearLatestAnswer = useCallback(() => {
+    setLatestAnswer('')
+  }, [])
+
   return {
+    latestAnswer,
     sendChat,
-    latestAnswer
+    clearLatestAnswer
   }
 }

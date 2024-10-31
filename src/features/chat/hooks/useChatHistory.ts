@@ -2,14 +2,14 @@ import { useState } from "react";
 import type { ChatHistoryType, ChatType } from "../types";
 
 export const useChatHistory = () => {
-  const [chats, setChats] = useState<ChatHistoryType>([]);
+  const [chatHistory, setChatHistory] = useState<ChatHistoryType>([]);
 
   const appendChats = (newChats: ChatType) => {
-    setChats((prevChats) => [...prevChats, newChats]);
+    setChatHistory((prevChats) => [...prevChats, newChats]);
   }
 
   return {
-    chats,
+    chatHistory,
     appendChats
   };
 }

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { ChatHistoryType } from '../../types';
 import { ChatLog } from '../ChatLog';
 
@@ -9,23 +9,16 @@ type Props = {
 export const ChatLogContainer = ({
 	latestAnswer
 }: Props) => {
+	const [chatHistory, setChatHistory] = useState<ChatHistoryType>([]);
+
 	const chats: ChatHistoryType = [
+		...chatHistory,
 		{
-			id: '1',
-			role: 'user',
-			message: 'Hello',
-		},
-		{
-			id: '2',
+			id: chatHistory.length.toString(),
 			role: 'assistant',
-			message: 'Hi',
-		},
-		{
-			id: '3',
-			role: 'assistant',
-			message: latestAnswer,
+			message: latestAnswer
 		}
-	];
+	]
 
 	return <ChatLog chatLog={chats} />;
 };

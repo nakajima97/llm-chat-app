@@ -1,7 +1,14 @@
+import { useEffect } from 'react';
 import type { ChatLogType } from '../../types';
 import { ChatLog } from '../ChatLog';
 
-export const ChatLogContainer = () => {
+type Props = {
+	latestAnswer: string;
+}
+
+export const ChatLogContainer = ({
+	latestAnswer
+}: Props) => {
 	const chats: ChatLogType = [
 		{
 			id: '1',
@@ -13,6 +20,11 @@ export const ChatLogContainer = () => {
 			role: 'assistant',
 			message: 'Hi',
 		},
+		{
+			id: '3',
+			role: 'assistant',
+			message: latestAnswer,
+		}
 	];
 
 	return <ChatLog chatLog={chats} />;

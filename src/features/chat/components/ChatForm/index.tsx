@@ -1,7 +1,14 @@
 import SendIcon from '@mui/icons-material/Send';
 import { Box, IconButton, TextField, useTheme } from '@mui/material';
+import type { SendChatType } from '../../hooks/useSendChat';
 
-export const ChatForm = () => {
+type Props = {
+	handleSendChat: () => void;
+}
+
+export const ChatForm = ({
+	handleSendChat
+}: Props) => {
 	const theme = useTheme();
 
 	return (
@@ -15,8 +22,8 @@ export const ChatForm = () => {
 			}}
 		>
 			<TextField placeholder="聞きたいことを入れてね" sx={{ flexGrow: 1 }} />
-			<IconButton>
-				<SendIcon />
+			<IconButton onClick={handleSendChat}>
+				<SendIcon/>
 			</IconButton>
 		</Box>
 	);

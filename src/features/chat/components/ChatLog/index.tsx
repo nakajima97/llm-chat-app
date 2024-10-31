@@ -21,7 +21,7 @@ export const ChatLog = ({ chatLog }: Props) => {
 			}}
 		>
 			{chatLog?.map((chat) => (
-				<ChatBubble key={chat.id} chat={chat} />
+				chat.message && <ChatBubble key={chat.id} chat={chat} />
 			))}
 		</Box>
 	);

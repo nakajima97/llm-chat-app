@@ -1,4 +1,4 @@
-import { use, useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 type SendChatArgument = {
   message: string;
@@ -46,10 +46,6 @@ export const useSendChat = () => {
       setLatestAnswer((prev) => prev + foo)
     }
   }, [])
-
-  useEffect(() => {
-    console.log(latestAnswer);
-  }, [latestAnswer]);
 
   return {
     sendChat,

@@ -3,11 +3,15 @@ import { Box, IconButton, TextField, useTheme } from '@mui/material';
 import type { SendChatType } from '../../hooks/useSendChat';
 
 type Props = {
+	text: string;
 	handleSendChat: () => void;
+	handleChangeText: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const ChatForm = ({
-	handleSendChat
+	text,
+	handleSendChat,
+	handleChangeText
 }: Props) => {
 	const theme = useTheme();
 
@@ -21,7 +25,7 @@ export const ChatForm = ({
 				gap: theme.spacing(1),
 			}}
 		>
-			<TextField placeholder="聞きたいことを入れてね" sx={{ flexGrow: 1 }} />
+			<TextField placeholder="聞きたいことを入れてね" sx={{ flexGrow: 1 }} value={text} onChange={handleChangeText}/>
 			<IconButton onClick={handleSendChat}>
 				<SendIcon/>
 			</IconButton>

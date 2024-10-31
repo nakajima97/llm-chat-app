@@ -6,4 +6,4 @@ export type ChatType = {
 	message: string;
 };
 
-export type ChatLogType = ChatType[];
+export type ChatHistoryType = ChatType[];

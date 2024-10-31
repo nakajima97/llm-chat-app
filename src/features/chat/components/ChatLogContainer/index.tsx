@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import type { ChatLogType } from '../../types';
+import type { ChatHistoryType } from '../../types';
 import { ChatLog } from '../ChatLog';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 export const ChatLogContainer = ({
 	latestAnswer
 }: Props) => {
-	const chats: ChatLogType = [
+	const chats: ChatHistoryType = [
 		{
 			id: '1',
 			role: 'user',

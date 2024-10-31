@@ -20,9 +20,9 @@ export const ChatLog = ({ chatLog }: Props) => {
 				padding: theme.spacing(1),
 			}}
 		>
-			{chatLog?.map((chat) => (
-				chat.message && <ChatBubble key={chat.id} chat={chat} />
-			))}
+			{chatLog?.map(
+				(chat) => chat.message && <ChatBubble key={chat.id} chat={chat} />,
+			)}
 		</Box>
 	);
 };

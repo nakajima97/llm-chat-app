@@ -6,13 +6,9 @@ type Props = {
 	text: string;
 	handleSendChat: () => void;
 	handleChangeText: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
-export const ChatForm = ({
-	text,
-	handleSendChat,
-	handleChangeText
-}: Props) => {
+export const ChatForm = ({ text, handleSendChat, handleChangeText }: Props) => {
 	const theme = useTheme();
 
 	return (
@@ -25,9 +21,14 @@ export const ChatForm = ({
 				gap: theme.spacing(1),
 			}}
 		>
-			<TextField placeholder="聞きたいことを入れてね" sx={{ flexGrow: 1 }} value={text} onChange={handleChangeText}/>
+			<TextField
+				placeholder="聞きたいことを入れてね"
+				sx={{ flexGrow: 1 }}
+				value={text}
+				onChange={handleChangeText}
+			/>
 			<IconButton onClick={handleSendChat}>
-				<SendIcon/>
+				<SendIcon />
 			</IconButton>
 		</Box>
 	);

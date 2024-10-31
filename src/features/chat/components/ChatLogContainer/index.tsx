@@ -4,11 +4,9 @@ import { ChatLog } from '../ChatLog';
 
 type Props = {
 	latestAnswer: string;
-}
+};
 
-export const ChatLogContainer = ({
-	latestAnswer
-}: Props) => {
+export const ChatLogContainer = ({ latestAnswer }: Props) => {
 	const [chatHistory, setChatHistory] = useState<ChatHistoryType>([]);
 
 	const chats: ChatHistoryType = [
@@ -16,9 +14,9 @@ export const ChatLogContainer = ({
 		{
 			id: chatHistory.length.toString(),
 			role: 'assistant',
-			message: latestAnswer
-		}
-	]
+			message: latestAnswer,
+		},
+	];
 
 	return <ChatLog chatLog={chats} />;
 };

@@ -1,6 +1,14 @@
 import HomeIcon from '@mui/icons-material/Home';
-import { Box, Divider, List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
-import { Item } from './item';
+import {
+	Box,
+	Divider,
+	List,
+	ListItem,
+	ListItemButton,
+	ListItemText,
+	Typography,
+} from '@mui/material';
+import { NavigationItem } from './components/NavigationItem';
 
 export const SideNavigationBar = () => {
 	const navigationItems = [
@@ -43,7 +51,7 @@ export const SideNavigationBar = () => {
 		<>
 			<List>
 				{navigationItems.map((item) => (
-					<Item
+					<NavigationItem
 						key={item.text}
 						title={item.text}
 						icon={item.icon}
@@ -64,8 +72,7 @@ export const SideNavigationBar = () => {
 				<List>
 					{threads.map((thread) => (
 						<ListItem key={thread.id} disablePadding>
-							<ListItemButton
-							>
+							<ListItemButton>
 								<ListItemText
 									primary={thread.title}
 									secondary={thread.lastUpdated.toLocaleDateString()}

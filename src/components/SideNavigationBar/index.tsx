@@ -9,6 +9,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { NavigationItem } from './components/NavigationItem';
+import { ThreadItem } from './components/ThreadItem';
 
 export const SideNavigationBar = () => {
 	const navigationItems = [
@@ -71,14 +72,7 @@ export const SideNavigationBar = () => {
 				</Typography>
 				<List>
 					{threads.map((thread) => (
-						<ListItem key={thread.id} disablePadding>
-							<ListItemButton>
-								<ListItemText
-									primary={thread.title}
-									secondary={thread.lastUpdated.toLocaleDateString()}
-								/>
-							</ListItemButton>
-						</ListItem>
+						<ThreadItem thread={thread} key={thread.id} />
 					))}
 				</List>
 			</Box>

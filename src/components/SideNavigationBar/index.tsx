@@ -3,7 +3,7 @@ import { Box, Divider, List, ListItem, ListItemButton, ListItemText, Typography 
 import { Item } from './item';
 
 export const SideNavigationBar = () => {
-	const items = [
+	const navigationItems = [
 		{
 			text: 'Home',
 			icon: <HomeIcon />,
@@ -42,7 +42,7 @@ export const SideNavigationBar = () => {
 	return (
 		<>
 			<List>
-				{items.map((item) => (
+				{navigationItems.map((item) => (
 					<Item
 						key={item.text}
 						title={item.text}

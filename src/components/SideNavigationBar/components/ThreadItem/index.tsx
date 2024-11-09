@@ -4,7 +4,7 @@ type Props = {
 	thread: {
 		id: number;
 		title: string;
-		lastUpdated: Date;
+		lastUpdated: string;
 	};
 };
 
@@ -12,10 +12,7 @@ export const ThreadItem = ({ thread }: Props) => {
 	return (
 		<ListItem key={thread.id} disablePadding>
 			<ListItemButton>
-				<ListItemText
-					primary={thread.title}
-					secondary={thread.lastUpdated.toLocaleDateString()}
-				/>
+				<ListItemText primary={thread.title} secondary={thread.lastUpdated} />
 			</ListItemButton>
 		</ListItem>
 	);

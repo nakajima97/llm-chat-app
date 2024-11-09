@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 
 export type SendChatArgument = {
@@ -8,6 +9,7 @@ export type SendChatType = (arg: SendChatArgument) => void;
 
 export const useSendChat = () => {
 	const [latestAnswer, setLatestAnswer] = useState<string>('');
+	const [threadId, setThreadId] = useState<string>('');
 
 	/**
 	 * チャットメッセージを送信する
@@ -38,15 +40,33 @@ export const useSendChat = () => {
 
 		while (true) {
 			const { done, value } = await reader.read();
+			if (done) break;
+			if (!value) continue;
 
-			// チャットが完了したら終了
-			if (done) {
-				break;
+			const lines = decoder.decode(value);
+			const jsons = lines
+				.split('data: ') // 各行は data: というキーワードで始まる
+				.map((line) => line.trim())
+				.filter((s) => s); // 余計な空行を取り除く
+
+			for (const json of jsons) {
+				try {
+					if (json === '[DONE]') {
+						return; // 終端記号
+					}
+					const chunk = JSON.parse(json);
+					const text = chunk.content;
+
+					setLatestAnswer(text);
+
+					// スレッドIDを保存
+					if (chunk.thread_id) {
+						setThreadId(chunk.thread_id);
+					}
+				} catch (error) {
+					console.error(error);
+				}
 			}
-
-			// チャットメッセージをデコード
-			const foo = decoder.decode(value);
-			setLatestAnswer((prev) => prev + foo);
 		}
 	}, []);
 
@@ -59,6 +79,7 @@ export const useSendChat = () => {
 
 	return {
 		latestAnswer,
+		threadId,
 		sendChat,
 		clearLatestAnswer,
 	};

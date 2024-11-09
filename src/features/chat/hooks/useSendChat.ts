@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 
 export type SendChatArgument = {
@@ -8,6 +9,7 @@ export type SendChatType = (arg: SendChatArgument) => void;
 
 export const useSendChat = () => {
 	const [latestAnswer, setLatestAnswer] = useState<string>('');
+	const [threadId, setThreadId] = useState<string>('');
 
 	/**
 	 * チャットメッセージを送信する
@@ -56,6 +58,11 @@ export const useSendChat = () => {
 					const text = chunk.content;
 
 					setLatestAnswer(text);
+
+					// スレッドIDを保存
+					if (chunk.threadId) {
+						setThreadId(chunk.threadId);
+					}
 				} catch (error) {
 					console.error(error);
 				}
@@ -72,6 +79,7 @@ export const useSendChat = () => {
 
 	return {
 		latestAnswer,
+		threadId,
 		sendChat,
 		clearLatestAnswer,
 	};

@@ -60,8 +60,8 @@ export const useSendChat = () => {
 					setLatestAnswer(text);
 
 					// スレッドIDを保存
-					if (chunk.threadId) {
-						setThreadId(chunk.threadId);
+					if (chunk.thread_id) {
+						setThreadId(chunk.thread_id);
 					}
 				} catch (error) {
 					console.error(error);

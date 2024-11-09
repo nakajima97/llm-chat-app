@@ -20,31 +20,37 @@ export const SideNavigationBar = () => {
 		},
 	];
 
+	const lastUpdated = new Date().toLocaleDateString('ja-JP', {
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
+	});
+
 	const threads = [
 		{
 			id: 1,
 			title: 'Thread 1',
-			lastUpdated: new Date(),
+			lastUpdated,
 		},
 		{
 			id: 2,
 			title: 'Thread 2',
-			lastUpdated: new Date(),
+			lastUpdated,
 		},
 		{
 			id: 3,
 			title: 'Thread 3',
-			lastUpdated: new Date(),
+			lastUpdated,
 		},
 		{
 			id: 4,
 			title: 'Thread 4',
-			lastUpdated: new Date(),
+			lastUpdated,
 		},
 		{
 			id: 5,
 			title: 'Thread 5',
-			lastUpdated: new Date(),
+			lastUpdated,
 		},
 	];
 

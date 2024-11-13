@@ -1,5 +1,5 @@
-import { LoginPage } from '@/screens/loginPage';
+import { LoginTemplate } from '@/templates/LoginTemplate';
 
 export default function Home() {
-	return <LoginPage />;
+	return <LoginTemplate />;
 }

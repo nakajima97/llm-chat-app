@@ -1,7 +1,7 @@
-import { ChatPage } from '@/screens/ChatPage';
+import { ChatTemplate } from '@/templates/ChatTemplate';
 
 const Chat = () => {
-	return <ChatPage />;
+	return <ChatTemplate />;
 };
 
 export default Chat;

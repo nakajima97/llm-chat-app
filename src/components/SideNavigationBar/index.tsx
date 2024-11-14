@@ -1,4 +1,5 @@
-import HomeIcon from '@mui/icons-material/Home';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import ChatIcon from '@mui/icons-material/Chat';
 import {
 	Box,
 	Divider,
@@ -14,8 +15,13 @@ import { ThreadItem } from './components/ThreadItem';
 export const SideNavigationBar = () => {
 	const navigationItems = [
 		{
-			text: 'Home',
-			icon: <HomeIcon />,
+			text: '新規チャット',
+			icon: <AddCircleOutlineIcon />,
+			path: '/chat',
+		},
+		{
+			text: 'スレッド一覧',
+			icon: <ChatIcon />,
 			path: '/chat',
 		},
 	];
@@ -72,9 +78,9 @@ export const SideNavigationBar = () => {
 			<Box sx={{ flex: 1, overflow: 'auto' }}>
 				<Typography
 					variant="subtitle2"
-					sx={{ px: 2, py: 1, color: 'text.secondary', fontWeight: 'medium' }}
+					sx={{ px: 2, pt: 2, color: 'text.secondary', fontWeight: 'medium' }}
 				>
-					スレッド一覧
+					お気に入りスレッド
 				</Typography>
 				<List>
 					{threads.map((thread) => (

@@ -31,6 +31,7 @@ export const ChatBaseLayout = ({
 					sx={{
 						height: '100%',
 						backgroundColor: theme.palette.grey[100],
+						width: 240,
 					}}
 				>
 					{navigationBarContent}

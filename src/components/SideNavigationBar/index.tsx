@@ -1,4 +1,5 @@
-import HomeIcon from '@mui/icons-material/Home';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import ChatIcon from '@mui/icons-material/Chat';
 import {
 	Box,
 	Divider,
@@ -14,8 +15,13 @@ import { ThreadItem } from './components/ThreadItem';
 export const SideNavigationBar = () => {
 	const navigationItems = [
 		{
-			text: 'Home',
-			icon: <HomeIcon />,
+			text: '新規チャット',
+			icon: <AddCircleOutlineIcon />,
+			path: '/chat',
+		},
+		{
+			text: 'スレッド一覧',
+			icon: <ChatIcon />,
 			path: '/chat',
 		},
 	];

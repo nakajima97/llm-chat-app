@@ -6,10 +6,11 @@ import { ChatLogContainer } from '../ChatLogContainer';
 
 type Props = {
 	sendChat: SendChatType;
+	latestQuestion: string;
 	latestAnswer: string;
 };
 
-export const ChatMain = ({ sendChat, latestAnswer }: Props) => {
+export const ChatMain = ({ sendChat, latestQuestion, latestAnswer }: Props) => {
 	return (
 		<Box
 			sx={{
@@ -20,7 +21,10 @@ export const ChatMain = ({ sendChat, latestAnswer }: Props) => {
 			}}
 		>
 			<Box sx={{ width: '100%', flexGrow: 1, overflowY: 'scroll' }}>
-				<ChatLogContainer latestAnswer={latestAnswer} />
+				<ChatLogContainer
+					latestQuestion={latestQuestion}
+					latestAnswer={latestAnswer}
+				/>
 			</Box>
 			<Box sx={{ width: '100%' }}>
 				<ChatFormContainer sendChat={sendChat} />

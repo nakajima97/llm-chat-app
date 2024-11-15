@@ -6,7 +6,13 @@ import type { SendChatArgument } from '../../hooks/useSendChat';
 import { ChatMain } from '../ChatMain';
 
 export const ChatMainContainer = () => {
-	const { sendChat, latestAnswer, threadId, clearLatestAnswer } = useSendChat();
+	const {
+		sendChat,
+		latestQuestion,
+		latestAnswer,
+		threadId,
+		clearLatestAnswer,
+	} = useSendChat();
 	const { chatHistory, appendChats } = useChatHistory();
 
 	const router = useRouter();
@@ -29,5 +35,11 @@ export const ChatMainContainer = () => {
 		clearLatestAnswer();
 	};
 
-	return <ChatMain sendChat={handleSendChat} latestAnswer={latestAnswer} />;
+	return (
+		<ChatMain
+			sendChat={handleSendChat}
+			latestQuestion={latestQuestion}
+			latestAnswer={latestAnswer}
+		/>
+	);
 };

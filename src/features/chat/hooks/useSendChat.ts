@@ -8,6 +8,7 @@ export type SendChatArgument = {
 export type SendChatType = (arg: SendChatArgument) => void;
 
 export const useSendChat = () => {
+	const [latestQuestion, setLatestQuestion] = useState<string>('');
 	const [latestAnswer, setLatestAnswer] = useState<string>('');
 	const [threadId, setThreadId] = useState<string>('');
 
@@ -15,6 +16,8 @@ export const useSendChat = () => {
 	 * チャットメッセージを送信する
 	 */
 	const sendChat = useCallback(async ({ message }: SendChatArgument) => {
+		setLatestQuestion(message);
+
 		const response = await fetch(
 			`http://localhost:8000/chat/sse?text=${message}`,
 			{
@@ -78,6 +81,7 @@ export const useSendChat = () => {
 	}, []);
 
 	return {
+		latestQuestion,
 		latestAnswer,
 		threadId,
 		sendChat,

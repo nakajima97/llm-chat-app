@@ -17,6 +17,9 @@ export const ChatMainContainer = () => {
 
 	const router = useRouter();
 
+	/**
+	 * 現在のthreadIdでURLを更新する。
+	 */
 	useEffect(() => {
 		if (threadId && router.query.thread !== threadId) {
 			router.replace(
@@ -30,8 +33,27 @@ export const ChatMainContainer = () => {
 		}
 	}, [threadId, router.pathname, router.replace, router.query]);
 
+	/**
+	 * ルータークエリからthreadIdを取得します。
+	 * @returns {string | undefined} 利用可能な場合、threadIdを返します。
+	 */
+	const getThreadId = (): string | undefined => {
+		const threadId = router.query.thread;
+
+		if (Array.isArray(threadId)) {
+			return threadId[0];
+		}
+		return threadId;
+	};
+
+	/**
+	 * チャットメッセージを送信します。
+	 * @param {SendChatArgument} param0 - 送信するメッセージ。
+	 */
 	const handleSendChat = ({ message }: SendChatArgument) => {
-		sendChat({ message });
+		const threadId = getThreadId();
+
+		sendChat({ message, threadId });
 		clearLatestAnswer();
 	};
 

@@ -10,7 +10,7 @@ export const ChatMainContainer = () => {
 		sendChat,
 		latestQuestion,
 		latestAnswer,
-		threadId,
+		currentThreadId,
 		clearLatestAnswer,
 	} = useSendChat();
 	const { chatHistory, appendChats } = useChatHistory();
@@ -18,20 +18,20 @@ export const ChatMainContainer = () => {
 	const router = useRouter();
 
 	/**
-	 * 現在のthreadIdでURLを更新する。
+	 * 現在のthreadIdでURLパラメータの値を更新する。
 	 */
 	useEffect(() => {
-		if (threadId && router.query.thread !== threadId) {
+		if (currentThreadId && router.query.thread !== currentThreadId) {
 			router.replace(
 				{
 					pathname: router.pathname,
-					query: { ...router.query, thread: threadId },
+					query: { ...router.query, thread: currentThreadId },
 				},
 				undefined,
 				{ shallow: true },
 			);
 		}
-	}, [threadId, router.pathname, router.replace, router.query]);
+	}, [currentThreadId, router.pathname, router.replace, router.query]);
 
 	/**
 	 * ルータークエリからthreadIdを取得します。

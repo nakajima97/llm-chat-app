@@ -11,7 +11,7 @@ export type SendChatType = (arg: SendChatArgument) => void;
 export const useSendChat = () => {
 	const [latestQuestion, setLatestQuestion] = useState<string>('');
 	const [latestAnswer, setLatestAnswer] = useState<string>('');
-	const [threadId, setThreadId] = useState<string>('');
+	const [currentThreadId, setCurrentThreadId] = useState<string>('');
 
 	/**
 	 * チャットメッセージを送信する
@@ -67,8 +67,8 @@ export const useSendChat = () => {
 						setLatestAnswer(text);
 
 						// スレッドIDを保存
-						if (chunk.thread_id) {
-							setThreadId(chunk.thread_id);
+						if (!currentThreadId && chunk.thread_id) {
+							setCurrentThreadId(chunk.thread_id);
 						}
 					} catch (error) {
 						console.error(error);
@@ -76,7 +76,7 @@ export const useSendChat = () => {
 				}
 			}
 		},
-		[],
+		[currentThreadId],
 	);
 
 	/**
@@ -89,7 +89,7 @@ export const useSendChat = () => {
 	return {
 		latestQuestion,
 		latestAnswer,
-		threadId,
+		currentThreadId,
 		sendChat,
 		clearLatestAnswer,
 	};

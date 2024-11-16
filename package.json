@@ -57,6 +57,6 @@
 		"vitest": "^2.0.2"
 	},
 	"lint-staged": {
-		"*": "biome check --write"
+		"*.{js,jsx,ts,tsx}": "biome check --write"
 	}
 }

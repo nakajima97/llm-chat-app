@@ -13,5 +13,16 @@
 		"formatter": {
 			"quoteStyle": "single"
 		}
+	},
+	"files": {
+		"ignore": [
+			"node_modules",
+			".next",
+			".storybook",
+			"coverage",
+			"dist",
+			"out",
+			"storybook-static"
+		]
 	}
 }

@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useChatHistory } from '../../hooks/useChatHistory';
 import { useSendChat } from '../../hooks/useSendChat';
 import type { SendChatArgument } from '../../hooks/useSendChat';
+import { useThreadMessages } from '../../hooks/useThreadMessages';
 import { ChatMain } from '../ChatMain';
 
 export const ChatMainContainer = () => {
@@ -15,6 +15,26 @@ export const ChatMainContainer = () => {
 	} = useSendChat();
 
 	const router = useRouter();
+
+	/**
+	 * ルータークエリからthreadIdを取得します。
+	 * @returns {string | undefined} 利用可能な場合、threadIdを返します。
+	 */
+	const getThreadId = (): string | undefined => {
+		const queryThreadId = router.query.thread;
+
+		if (Array.isArray(queryThreadId)) {
+			return queryThreadId[0];
+		}
+		return queryThreadId;
+	};
+
+	const threadId = getThreadId();
+
+	const { fetchThreadMessages } = useThreadMessages();
+	const { data, refetch } = fetchThreadMessages(threadId);
+	const chatLog = data ?? [];
+
 	/**
 	 * 現在のthreadIdでURLパラメータの値を更新する。
 	 */
@@ -32,25 +52,11 @@ export const ChatMainContainer = () => {
 	}, [currentThreadId, router.pathname, router.replace, router.query]);
 
 	/**
-	 * ルータークエリからthreadIdを取得します。
-	 * @returns {string | undefined} 利用可能な場合、threadIdを返します。
-	 */
-	const getThreadId = (): string | undefined => {
-		const queryThreadId = router.query.thread;
-
-		if (Array.isArray(queryThreadId)) {
-			return queryThreadId[0];
-		}
-		return queryThreadId;
-	};
-
-	const threadId = getThreadId();
-
-	/**
 	 * チャットメッセージを送信します。
 	 * @param {SendChatArgument} param0 - 送信するメッセージ。
 	 */
 	const handleSendChat = ({ message }: SendChatArgument) => {
+		refetch();
 		const threadId = getThreadId();
 
 		sendChat({ message, threadId });
@@ -62,7 +68,7 @@ export const ChatMainContainer = () => {
 			sendChat={handleSendChat}
 			latestQuestion={latestQuestion}
 			latestAnswer={latestAnswer}
-			threadId={threadId}
+			chatLog={chatLog}
 		/>
 	);
 };

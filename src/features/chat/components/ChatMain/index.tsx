@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import type { SendChatType } from '../../hooks/useSendChat';
-import type { ThreadIdType } from '../../types';
+import type { ChatHistoryType } from '../../types';
 import { ChatFormContainer } from '../ChatFormContainer';
 import { ChatLogContainer } from '../ChatLogContainer';
 
@@ -8,14 +8,14 @@ type Props = {
 	sendChat: SendChatType;
 	latestQuestion: string;
 	latestAnswer: string;
-	threadId: ThreadIdType;
+	chatLog: ChatHistoryType;
 };
 
 export const ChatMain = ({
 	sendChat,
 	latestQuestion,
 	latestAnswer,
-	threadId,
+	chatLog,
 }: Props) => {
 	return (
 		<Box
@@ -30,7 +30,7 @@ export const ChatMain = ({
 				<ChatLogContainer
 					latestQuestion={latestQuestion}
 					latestAnswer={latestAnswer}
-					threadId={threadId}
+					chatLog={chatLog}
 				/>
 			</Box>
 			<Box sx={{ width: '100%' }}>

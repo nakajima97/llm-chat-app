@@ -1,23 +1,17 @@
-import { useState } from 'react';
-import { useThreadMessages } from '../../hooks/useThreadMessages';
-import type { ChatHistoryType, ThreadIdType } from '../../types';
+import type { ChatHistoryType } from '../../types';
 import { ChatLog } from '../ChatLog';
 
 type Props = {
-	threadId: ThreadIdType;
+	chatLog: ChatHistoryType;
 	latestQuestion: string;
 	latestAnswer: string;
 };
 
 export const ChatLogContainer = ({
-	threadId,
+	chatLog,
 	latestQuestion,
 	latestAnswer,
 }: Props) => {
-	const { fetchThreadMessages } = useThreadMessages();
-	const { data } = fetchThreadMessages(threadId);
-	const chatLog = data ?? [];
-
 	const chats: ChatHistoryType = [
 		...chatLog,
 		{

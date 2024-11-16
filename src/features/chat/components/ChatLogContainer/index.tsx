@@ -18,8 +18,6 @@ export const ChatLogContainer = ({
 	const { data } = fetchThreadMessages(threadId);
 	const chatLog = data ?? [];
 
-	console.log({ data });
-
 	const chats: ChatHistoryType = [
 		...chatLog,
 		{

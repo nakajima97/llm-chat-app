@@ -32,6 +32,7 @@ export const ChatBaseLayout = ({
 						height: '100%',
 						backgroundColor: theme.palette.grey[100],
 						width: 240,
+						flexShrink: 0,
 					}}
 				>
 					{navigationBarContent}

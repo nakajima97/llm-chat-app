@@ -13,10 +13,8 @@ export const ChatMainContainer = () => {
 		currentThreadId,
 		clearLatestAnswer,
 	} = useSendChat();
-	const { chatHistory, appendChats } = useChatHistory();
 
 	const router = useRouter();
-
 	/**
 	 * 現在のthreadIdでURLパラメータの値を更新する。
 	 */
@@ -38,13 +36,15 @@ export const ChatMainContainer = () => {
 	 * @returns {string | undefined} 利用可能な場合、threadIdを返します。
 	 */
 	const getThreadId = (): string | undefined => {
-		const threadId = router.query.thread;
+		const queryThreadId = router.query.thread;
 
-		if (Array.isArray(threadId)) {
-			return threadId[0];
+		if (Array.isArray(queryThreadId)) {
+			return queryThreadId[0];
 		}
-		return threadId;
+		return queryThreadId;
 	};
+
+	const threadId = getThreadId();
 
 	/**
 	 * チャットメッセージを送信します。
@@ -62,6 +62,7 @@ export const ChatMainContainer = () => {
 			sendChat={handleSendChat}
 			latestQuestion={latestQuestion}
 			latestAnswer={latestAnswer}
+			threadId={threadId}
 		/>
 	);
 };

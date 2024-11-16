@@ -7,3 +7,5 @@ export type ChatType = {
 };
 
 export type ChatHistoryType = ChatType[];
+
+export type ThreadIdType = string | undefined;

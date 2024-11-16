@@ -2,6 +2,13 @@
 LLMとチャットできるアプリ  
 サーバは以下リポジトリ  
 https://github.com/nakajima97/llm-chat-app-server
+
+## setup
+```bash
+yarn
+cp .env.local.sample .env.local
+```
+
 ## versions
 - Node.js 22.4.1
 

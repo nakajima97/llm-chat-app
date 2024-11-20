@@ -22,10 +22,10 @@ export const ChatBaseLayout = ({
 				flexDirection: 'column',
 			}}
 		>
-			<AppBar position="static">
+			<AppBar position="static" sx={{ flexShrink: 0 }}>
 				<Toolbar>{title}</Toolbar>
 			</AppBar>
-			<Box sx={{ flexGrow: 1, display: 'flex' }}>
+			<Box sx={{ flexGrow: 1, display: 'flex', minHeight: 0 }}>
 				<Box
 					component="nav"
 					sx={{

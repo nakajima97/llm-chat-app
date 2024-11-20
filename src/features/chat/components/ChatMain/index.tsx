@@ -26,14 +26,16 @@ export const ChatMain = ({
 				flexDirection: 'column',
 			}}
 		>
-			<Box sx={{ width: '100%', flexGrow: 1, overflowY: 'scroll' }}>
+			<Box
+				sx={{ width: '100%', minHeight: 0, flexGrow: 1, overflow: 'hidden' }}
+			>
 				<ChatLogContainer
 					latestQuestion={latestQuestion}
 					latestAnswer={latestAnswer}
 					chatLog={chatLog}
 				/>
 			</Box>
-			<Box sx={{ width: '100%' }}>
+			<Box sx={{ width: '100%', flexShrink: 0 }}>
 				<ChatFormContainer sendChat={sendChat} />
 			</Box>
 		</Box>

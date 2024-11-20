@@ -18,6 +18,7 @@ export const ChatLog = ({ chatLog }: Props) => {
 				flexDirection: 'column',
 				gap: theme.spacing(1),
 				padding: theme.spacing(1),
+				overflowY: 'auto',
 			}}
 		>
 			{chatLog?.map(

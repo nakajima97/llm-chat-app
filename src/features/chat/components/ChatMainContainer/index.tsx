@@ -56,8 +56,10 @@ export const ChatMainContainer = () => {
 	 * @param {SendChatArgument} param0 - 送信するメッセージ。
 	 */
 	const handleSendChat = ({ message }: SendChatArgument) => {
-		refetch();
 		const threadId = getThreadId();
+		if (threadId) {
+			refetch();
+		}
 
 		sendChat({ message, threadId });
 		clearLatestAnswer();

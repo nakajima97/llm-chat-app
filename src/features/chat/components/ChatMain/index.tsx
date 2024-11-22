@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import type { SendChatType } from '../../hooks/useSendChat';
-import type { ChatHistoryType } from '../../types';
+import type { ChatLogType } from '../../types';
 import { ChatFormContainer } from '../ChatFormContainer';
 import { ChatLogContainer } from '../ChatLogContainer';
 
@@ -8,7 +8,7 @@ type Props = {
 	sendChat: SendChatType;
 	latestQuestion: string;
 	latestAnswer: string;
-	chatLog: ChatHistoryType;
+	chatLog: ChatLogType;
 };
 
 export const ChatMain = ({

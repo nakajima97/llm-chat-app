@@ -6,6 +6,6 @@ export type ChatType = {
 	message: string;
 };
 
-export type ChatHistoryType = ChatType[];
+export type ChatLogType = ChatType[];
 
 export type ThreadIdType = string | undefined;

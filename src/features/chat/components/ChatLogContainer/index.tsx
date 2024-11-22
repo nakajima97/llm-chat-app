@@ -1,8 +1,8 @@
-import type { ChatHistoryType } from '../../types';
+import type { ChatLogType } from '../../types';
 import { ChatLog } from '../ChatLog';
 
 type Props = {
-	chatLog: ChatHistoryType;
+	chatLog: ChatLogType;
 	latestQuestion: string;
 	latestAnswer: string;
 };
@@ -12,7 +12,7 @@ export const ChatLogContainer = ({
 	latestQuestion,
 	latestAnswer,
 }: Props) => {
-	const chats: ChatHistoryType = [
+	const chats: ChatLogType = [
 		...chatLog,
 		{
 			id: (chatLog.length + 1).toString(),

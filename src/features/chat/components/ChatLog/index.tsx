@@ -1,9 +1,9 @@
 import { Box, useTheme } from '@mui/material';
-import type { ChatHistoryType } from '../../types';
+import type { ChatLogType } from '../../types';
 import { ChatBubble } from '../ChatBubble';
 
 type Props = {
-	chatLog: ChatHistoryType;
+	chatLog: ChatLogType;
 };
 
 export const ChatLog = ({ chatLog }: Props) => {

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getThreadMessages } from '../api/getThreadMessages';
-import type { ChatHistoryType, ThreadIdType } from '../types';
+import type { ChatLogType, ThreadIdType } from '../types';
 
 /**
  * 指定されたスレッドIDに基づいてスレッドメッセージを取得するカスタムフック
@@ -13,7 +13,7 @@ export const useThreadMessages = () => {
 	 * @returns {ReturnType<typeof useQuery>} React Queryのクエリ結果
 	 */
 	const fetchThreadMessages = (threadId: ThreadIdType) => {
-		return useQuery<ChatHistoryType>({
+		return useQuery<ChatLogType>({
 			queryKey: ['thread', threadId],
 			queryFn: () => getThreadMessages({ threadId }),
 			enabled: !!threadId,

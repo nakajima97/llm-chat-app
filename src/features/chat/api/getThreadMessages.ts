@@ -1,5 +1,5 @@
 import { axiosInstance } from '@/lib/axios';
-import type { ChatHistoryType, ThreadIdType } from '../types';
+import type { ChatLogType, ThreadIdType } from '../types';
 
 // APIのレスポンス型
 type APIMessage = {
@@ -31,9 +31,7 @@ const convertRoleId = (roleId: number): 'assistant' | 'user' => {
 /**
  * APIレスポンスをフロントエンド用の型に変換
  */
-const convertToFrontendFormat = (
-	response: APIThreadResponse,
-): ChatHistoryType => {
+const convertToFrontendFormat = (response: APIThreadResponse): ChatLogType => {
 	return response.map((message) => ({
 		id: message.id,
 		role: convertRoleId(message.role_id),
@@ -44,7 +42,7 @@ const convertToFrontendFormat = (
 /**
  * 指定されたスレッドIDに基づいてスレッドメッセージを取得する非同期関数
  * @param {Arguments} param0 - 引数オブジェクト
- * @returns {Promise<ChatHistoryType>} - スレッドメッセージのデータを含むPromise
+ * @returns {Promise<ChatLogType>} - スレッドメッセージのデータを含むPromise
  */
 export const getThreadMessages = async ({ threadId }: Arguments) => {
 	const response = await axiosInstance.get(`/threads/${threadId}`);

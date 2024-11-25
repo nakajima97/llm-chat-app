@@ -6,9 +6,15 @@ type Props = {
 	text: string;
 	handleSendChat: () => void;
 	handleChangeText: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	handleKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 };
 
-export const ChatForm = ({ text, handleSendChat, handleChangeText }: Props) => {
+export const ChatForm = ({
+	text,
+	handleSendChat,
+	handleChangeText,
+	handleKeyDown,
+}: Props) => {
 	const theme = useTheme();
 
 	return (
@@ -26,6 +32,7 @@ export const ChatForm = ({ text, handleSendChat, handleChangeText }: Props) => {
 				sx={{ flexGrow: 1 }}
 				value={text}
 				onChange={handleChangeText}
+				onKeyDown={handleKeyDown}
 			/>
 			<IconButton onClick={handleSendChat}>
 				<SendIcon />

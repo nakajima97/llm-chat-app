@@ -18,11 +18,18 @@ export const ChatFormContainer = ({ sendChat }: Props) => {
 		setText(e.target.value);
 	};
 
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.ctrlKey && e.key === 'Enter') {
+			handleSendChat();
+		}
+	};
+
 	return (
 		<ChatForm
 			handleSendChat={handleSendChat}
 			text={text}
 			handleChangeText={handleChangeText}
+			handleKeyDown={handleKeyDown}
 		/>
 	);
 };

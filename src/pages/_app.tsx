@@ -9,17 +9,17 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export default function App({ Component, pageProps }: AppProps) {
-	const theme = createTheme();
-	const queryClient = new QueryClient();
+  const theme = createTheme();
+  const queryClient = new QueryClient();
 
-	return (
-		<QueryClientProvider client={queryClient}>
-			<AppCacheProvider>
-				<ThemeProvider theme={theme}>
-					<CssBaseline />
-					<Component {...pageProps} />
-				</ThemeProvider>
-			</AppCacheProvider>
-		</QueryClientProvider>
-	);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AppCacheProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </AppCacheProvider>
+    </QueryClientProvider>
+  );
 }

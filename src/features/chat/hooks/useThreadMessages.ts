@@ -8,19 +8,19 @@ import type { ChatLogType, ThreadIdType } from '../types';
  * @returns {object} fetchThreadMessages関数を含むオブジェクト
  */
 export const useThreadMessages = () => {
-	/**
-	 * スレッドメッセージを取得する関数
-	 * @returns {ReturnType<typeof useQuery>} React Queryのクエリ結果
-	 */
-	const fetchThreadMessages = (threadId: ThreadIdType) => {
-		return useQuery<ChatLogType>({
-			queryKey: ['thread', threadId],
-			queryFn: () => getThreadMessages({ threadId }),
-			enabled: !!threadId,
-		});
-	};
+  /**
+   * スレッドメッセージを取得する関数
+   * @returns {ReturnType<typeof useQuery>} React Queryのクエリ結果
+   */
+  const fetchThreadMessages = (threadId: ThreadIdType) => {
+    return useQuery<ChatLogType>({
+      queryKey: ['thread', threadId],
+      queryFn: () => getThreadMessages({ threadId }),
+      enabled: !!threadId,
+    });
+  };
 
-	return {
-		fetchThreadMessages,
-	};
+  return {
+    fetchThreadMessages,
+  };
 };

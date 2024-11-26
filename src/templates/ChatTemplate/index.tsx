@@ -4,9 +4,9 @@ import { ChatMain } from '@/features/chat/components/ChatMain';
 import { ChatMainContainer } from '@/features/chat/components/ChatMainContainer';
 
 export const ChatTemplate = () => {
-	return (
-		<ChatBaseLayout title="Chat" navigationBarContent={<SideNavigationBar />}>
-			<ChatMainContainer />
-		</ChatBaseLayout>
-	);
+  return (
+    <ChatBaseLayout title="Chat" navigationBarContent={<SideNavigationBar />}>
+      <ChatMainContainer />
+    </ChatBaseLayout>
+  );
 };

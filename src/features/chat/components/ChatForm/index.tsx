@@ -1,5 +1,6 @@
 import SendIcon from '@mui/icons-material/Send';
 import { Box, IconButton, TextField, useTheme } from '@mui/material';
+import { useEffect, useRef } from 'react';
 import type { SendChatType } from '../../hooks/useSendChat';
 
 type Props = {
@@ -16,6 +17,13 @@ export const ChatForm = ({
 	handleKeyDown,
 }: Props) => {
 	const theme = useTheme();
+	const textFieldRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		if (textFieldRef.current) {
+			textFieldRef.current.focus();
+		}
+	}, []);
 
 	return (
 		<Box
@@ -33,6 +41,7 @@ export const ChatForm = ({
 				value={text}
 				onChange={handleChangeText}
 				onKeyDown={handleKeyDown}
+				inputRef={textFieldRef}
 			/>
 			<IconButton onClick={handleSendChat}>
 				<SendIcon />

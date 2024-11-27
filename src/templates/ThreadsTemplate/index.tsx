@@ -1,14 +1,13 @@
 import { ChatBaseLayout } from '@/components/ChatBaseLayout';
 import { SideNavigationBar } from '@/components/SideNavigationBar';
-import { ChatMainContainer } from '@/features/chat/components/ChatMainContainer';
 
-export const ChatTemplate = () => {
+export const ThreadsTemplate = () => {
   return (
     <ChatBaseLayout
-      title="チャット画面"
+      title="スレッド一覧"
       navigationBarContent={<SideNavigationBar />}
     >
-      <ChatMainContainer />
+      <h1>Threads</h1>
     </ChatBaseLayout>
   );
 };

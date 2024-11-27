@@ -4,6 +4,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
+import { useRouter } from 'next/router';
 
 type Props = {
   title: string;
@@ -12,8 +13,14 @@ type Props = {
 };
 
 export const NavigationItem = ({ title, icon, link }: Props) => {
+  const router = useRouter();
+
   return (
-    <ListItemButton onClick={() => {}}>
+    <ListItemButton
+      onClick={() => {
+        router.push(link);
+      }}
+    >
       <ListItem>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={title} />

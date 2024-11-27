@@ -22,7 +22,7 @@ export const SideNavigationBar = () => {
     {
       text: 'スレッド一覧',
       icon: <ChatIcon />,
-      path: '/chat',
+      path: '/threads',
     },
   ];
 

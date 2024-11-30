@@ -29,6 +29,7 @@ export const ChatMainContainer = () => {
     }
 
     const latestThreadId = await sendChat({ message, threadId });
+
     clearLatestAnswer();
 
     if (latestThreadId !== threadId) {

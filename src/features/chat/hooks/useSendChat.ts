@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 
 export type SendChatArgument = {
@@ -6,12 +5,11 @@ export type SendChatArgument = {
   threadId?: string;
 };
 
-export type SendChatType = (arg: SendChatArgument) => void;
+export type SendChatType = (arg: SendChatArgument) => Promise<string>;
 
 export const useSendChat = () => {
   const [latestQuestion, setLatestQuestion] = useState<string>('');
   const [latestAnswer, setLatestAnswer] = useState<string>('');
-  const [currentThreadId, setCurrentThreadId] = useState<string>('');
 
   /**
    * チャットメッセージを送信する
@@ -45,6 +43,9 @@ export const useSendChat = () => {
         throw new Error('Failed to send chat message');
       }
 
+      // 戻り値用にスレッドIDを初期化
+      let newThreadId = '';
+
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
@@ -59,7 +60,7 @@ export const useSendChat = () => {
         for (const json of jsons) {
           try {
             if (json === '[DONE]') {
-              return; // 終端記号
+              return newThreadId; // 終端記号
             }
             const chunk = JSON.parse(json);
             const text = chunk.content;
@@ -67,8 +68,8 @@ export const useSendChat = () => {
             setLatestAnswer(text);
 
             // スレッドIDを保存
-            if (!currentThreadId && chunk.thread_id) {
-              setCurrentThreadId(chunk.thread_id);
+            if (!newThreadId && chunk.thread_id) {
+              newThreadId = chunk.thread_id;
             }
           } catch (error) {
             console.error(error);
@@ -76,7 +77,7 @@ export const useSendChat = () => {
         }
       }
     },
-    [currentThreadId],
+    [],
   );
 
   /**
@@ -84,12 +85,12 @@ export const useSendChat = () => {
    */
   const clearLatestAnswer = useCallback(() => {
     setLatestAnswer('');
+    setLatestQuestion('');
   }, []);
 
   return {
     latestQuestion,
     latestAnswer,
-    currentThreadId,
     sendChat,
     clearLatestAnswer,
   };

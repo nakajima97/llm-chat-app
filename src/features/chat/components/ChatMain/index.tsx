@@ -1,11 +1,11 @@
 import { Box } from '@mui/material';
-import type { SendChatType } from '../../hooks/useSendChat';
 import type { ChatLogType } from '../../types';
 import { ChatFormContainer } from '../ChatFormContainer';
 import { ChatLogContainer } from '../ChatLogContainer';
+import type { HandleSendChatType } from '../ChatMainContainer';
 
 type Props = {
-  sendChat: SendChatType;
+  sendChat: HandleSendChatType;
   latestQuestion: string;
   latestAnswer: string;
   chatLog: ChatLogType;

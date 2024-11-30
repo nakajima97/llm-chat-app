@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import type { SendChatType } from '../../hooks/useSendChat';
 import { ChatForm } from '../ChatForm';
+import type { HandleSendChatType } from '../ChatMainContainer';
 
 type Props = {
-  sendChat: SendChatType;
+  sendChat: HandleSendChatType;
 };
 
 export const ChatFormContainer = ({ sendChat }: Props) => {

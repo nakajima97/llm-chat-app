@@ -16,9 +16,11 @@ export const ChatMainContainer = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const id = getThreadId();
-    setThreadId(id);
-  }, []);
+    if (router.isReady) {
+      const id = getThreadId();
+      setThreadId(id);
+    }
+  }, [router.isReady]);
 
   /**
    * ルータークエリからthreadIdを取得します。

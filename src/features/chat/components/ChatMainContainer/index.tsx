@@ -15,6 +15,9 @@ export const ChatMainContainer = () => {
 
   const router = useRouter();
 
+  /**
+   * ページを開いた際にURLパラメータからthreadIdを取得します。
+   */
   useEffect(() => {
     if (router.isReady) {
       const id = getThreadId();

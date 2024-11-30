@@ -8,19 +8,13 @@ import { ChatMain } from '../ChatMain';
 export const ChatMainContainer = () => {
   const [threadId, setThreadId] = useState<string | undefined>(undefined);
 
-  const {
-    sendChat,
-    latestQuestion,
-    latestAnswer,
-    currentThreadId,
-    clearLatestAnswer,
-  } = useSendChat();
+  const { sendChat, latestQuestion, latestAnswer, clearLatestAnswer } =
+    useSendChat();
 
   const router = useRouter();
 
   useEffect(() => {
     const id = getThreadId();
-    console.log('id', id);
     setThreadId(id);
   }, []);
 
@@ -45,30 +39,34 @@ export const ChatMainContainer = () => {
    * 現在のthreadIdでURLパラメータの値を更新する。
    */
   useEffect(() => {
-    if (currentThreadId && router.query.thread !== currentThreadId) {
+    if (threadId && router.query.threadId !== threadId) {
       router.replace(
         {
           pathname: router.pathname,
-          query: { ...router.query, thread: currentThreadId },
+          query: { ...router.query, threadId },
         },
         undefined,
         { shallow: true },
       );
     }
-  }, [currentThreadId, router.pathname, router.replace, router.query]);
+  }, [threadId, router.pathname, router.replace, router.query]);
 
   /**
    * チャットメッセージを送信します。
    * @param {SendChatArgument} param0 - 送信するメッセージ。
    */
-  const handleSendChat = ({ message }: SendChatArgument) => {
+  const handleSendChat = async ({ message }: SendChatArgument) => {
     const threadId = getThreadId();
     if (threadId) {
       refetch();
     }
-
-    sendChat({ message, threadId });
     clearLatestAnswer();
+
+    const latestThreadId = await sendChat({ message, threadId });
+
+    if (latestThreadId) {
+      setThreadId(latestThreadId);
+    }
   };
 
   return (

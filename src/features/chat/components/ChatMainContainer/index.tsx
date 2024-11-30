@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSendChat } from '../../hooks/useSendChat';
 import type { SendChatArgument } from '../../hooks/useSendChat';
 import { useThreadMessages } from '../../hooks/useThreadMessages';
 import { ChatMain } from '../ChatMain';
+
+export type HandleSendChatType = (arg: SendChatArgument) => Promise<void>;
 
 export const ChatMainContainer = () => {
   const [threadId, setThreadId] = useState<string | undefined>(undefined);
@@ -22,14 +24,14 @@ export const ChatMainContainer = () => {
    * ルータークエリからthreadIdを取得します。
    * @returns {string | undefined} 利用可能な場合、threadIdを返します。
    */
-  const getThreadId = (): string | undefined => {
+  const getThreadId = useCallback((): string | undefined => {
     const queryThreadId = router.query.threadId;
 
     if (Array.isArray(queryThreadId)) {
       return queryThreadId[0];
     }
     return queryThreadId;
-  };
+  }, [router.query.threadId]);
 
   const { fetchThreadMessages } = useThreadMessages();
   const { data, refetch } = fetchThreadMessages(threadId);
@@ -39,7 +41,8 @@ export const ChatMainContainer = () => {
    * 現在のthreadIdでURLパラメータの値を更新する。
    */
   useEffect(() => {
-    if (threadId && router.query.threadId !== threadId) {
+    const currentThreadId = getThreadId();
+    if (currentThreadId && threadId && currentThreadId !== threadId) {
       router.replace(
         {
           pathname: router.pathname,
@@ -49,7 +52,7 @@ export const ChatMainContainer = () => {
         { shallow: true },
       );
     }
-  }, [threadId, router.pathname, router.replace, router.query]);
+  }, [getThreadId, threadId, router.pathname, router.replace, router.query]);
 
   /**
    * チャットメッセージを送信します。
@@ -64,7 +67,7 @@ export const ChatMainContainer = () => {
     const latestThreadId = await sendChat({ message, threadId });
     clearLatestAnswer();
 
-    if (latestThreadId) {
+    if (latestThreadId !== threadId) {
       setThreadId(latestThreadId);
     }
   };

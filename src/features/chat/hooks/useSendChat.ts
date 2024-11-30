@@ -5,7 +5,7 @@ export type SendChatArgument = {
   threadId?: string;
 };
 
-export type SendChatType = (arg: SendChatArgument) => void;
+export type SendChatType = (arg: SendChatArgument) => Promise<string>;
 
 export const useSendChat = () => {
   const [latestQuestion, setLatestQuestion] = useState<string>('');

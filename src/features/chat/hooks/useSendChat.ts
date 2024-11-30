@@ -88,6 +88,7 @@ export const useSendChat = () => {
    */
   const clearLatestAnswer = useCallback(() => {
     setLatestAnswer('');
+    setLatestQuestion('');
   }, []);
 
   return {

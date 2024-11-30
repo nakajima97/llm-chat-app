@@ -60,9 +60,9 @@ export const ChatMainContainer = () => {
     if (threadId) {
       refetch();
     }
-    clearLatestAnswer();
 
     const latestThreadId = await sendChat({ message, threadId });
+    clearLatestAnswer();
 
     if (latestThreadId) {
       setThreadId(latestThreadId);

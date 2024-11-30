@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 
 export type SendChatArgument = {
@@ -45,7 +44,7 @@ export const useSendChat = () => {
       }
 
       // 戻り値用にスレッドIDを初期化
-      let currentThreadId = '';
+      let newThreadId = '';
 
       while (true) {
         const { done, value } = await reader.read();
@@ -61,7 +60,7 @@ export const useSendChat = () => {
         for (const json of jsons) {
           try {
             if (json === '[DONE]') {
-              return; // 終端記号
+              return newThreadId; // 終端記号
             }
             const chunk = JSON.parse(json);
             const text = chunk.content;
@@ -69,16 +68,14 @@ export const useSendChat = () => {
             setLatestAnswer(text);
 
             // スレッドIDを保存
-            if (!currentThreadId && chunk.thread_id) {
-              currentThreadId = chunk.thread_id;
+            if (!newThreadId && chunk.thread_id) {
+              newThreadId = chunk.thread_id;
             }
           } catch (error) {
             console.error(error);
           }
         }
       }
-
-      return currentThreadId;
     },
     [],
   );

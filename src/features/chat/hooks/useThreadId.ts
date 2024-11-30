@@ -32,8 +32,7 @@ export const useThreadId = () => {
    * 現在のthreadIdでURLパラメータの値を更新する。
    */
   useEffect(() => {
-    const currentThreadId = getThreadId();
-    if (currentThreadId && threadId && currentThreadId !== threadId) {
+    if (threadId) {
       router.replace(
         {
           pathname: router.pathname,
@@ -43,7 +42,7 @@ export const useThreadId = () => {
         { shallow: true },
       );
     }
-  }, [getThreadId, threadId, router.pathname, router.replace, router.query]);
+  }, [threadId, router.pathname, router.replace, router.query]);
 
   return { threadId, setThreadId, getThreadId };
 };

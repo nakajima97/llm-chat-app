@@ -44,7 +44,7 @@ export const useSendChat = () => {
       }
 
       // 戻り値用にスレッドIDを初期化
-      let newThreadId = '';
+      let newThreadId = undefined;
 
       while (true) {
         const { done, value } = await reader.read();
@@ -76,6 +76,7 @@ export const useSendChat = () => {
           }
         }
       }
+      return newThreadId;
     },
     [],
   );

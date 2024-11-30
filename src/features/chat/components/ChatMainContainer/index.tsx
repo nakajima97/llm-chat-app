@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSendChat } from '../../hooks/useSendChat';
 import type { SendChatArgument } from '../../hooks/useSendChat';
 import { useThreadMessages } from '../../hooks/useThreadMessages';
 import { ChatMain } from '../ChatMain';
 
 export const ChatMainContainer = () => {
+  const [threadId, setThreadId] = useState<string | undefined>(undefined);
+
   const {
     sendChat,
     latestQuestion,
@@ -16,20 +18,24 @@ export const ChatMainContainer = () => {
 
   const router = useRouter();
 
+  useEffect(() => {
+    const id = getThreadId();
+    console.log('id', id);
+    setThreadId(id);
+  }, []);
+
   /**
    * ルータークエリからthreadIdを取得します。
    * @returns {string | undefined} 利用可能な場合、threadIdを返します。
    */
   const getThreadId = (): string | undefined => {
-    const queryThreadId = router.query.thread;
+    const queryThreadId = router.query.threadId;
 
     if (Array.isArray(queryThreadId)) {
       return queryThreadId[0];
     }
     return queryThreadId;
   };
-
-  const threadId = getThreadId();
 
   const { fetchThreadMessages } = useThreadMessages();
   const { data, refetch } = fetchThreadMessages(threadId);

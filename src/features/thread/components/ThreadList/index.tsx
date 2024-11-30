@@ -5,6 +5,7 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material';
+import { useRouter } from 'next/router';
 import type { ThreadListType } from '../../types';
 
 type Props = {
@@ -12,6 +13,8 @@ type Props = {
 };
 
 export const ThreadList = ({ threads }: Props) => {
+  const router = useRouter();
+
   return (
     <Box
       sx={{
@@ -23,7 +26,7 @@ export const ThreadList = ({ threads }: Props) => {
       <List sx={{ width: '100%', maxWidth: 360 }}>
         {threads.map((thread) => (
           <ListItem key={thread.id}>
-            <ListItemButton>
+            <ListItemButton onClick={() => router.push(`/chat/${thread.id}`)}>
               <ListItemText primary={thread.title} />
             </ListItemButton>
           </ListItem>

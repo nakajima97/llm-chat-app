@@ -35,14 +35,13 @@ export const useThreadId = () => {
     if (threadId) {
       router.replace(
         {
-          pathname: router.pathname,
-          query: { ...router.query, threadId },
+          pathname: `/chat/${threadId}`,
         },
         undefined,
         { shallow: true },
       );
     }
-  }, [threadId, router.pathname, router.replace, router.query]);
+  }, [threadId, router.replace]);
 
   return { threadId, setThreadId, getThreadId };
 };

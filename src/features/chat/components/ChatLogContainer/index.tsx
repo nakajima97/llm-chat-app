@@ -1,3 +1,4 @@
+import { useAutoScroll } from '../../hooks/useAutoScroll';
 import type { ChatLogType } from '../../types';
 import { ChatLog } from '../ChatLog';
 
@@ -26,5 +27,13 @@ export const ChatLogContainer = ({
     },
   ];
 
-  return <ChatLog chatLog={chats} />;
+  const { scrollRouteRef, handleScroll } = useAutoScroll({ chatLog: chats });
+
+  return (
+    <ChatLog
+      scrollRouteRef={scrollRouteRef}
+      chatLog={chats}
+      handleScroll={handleScroll}
+    />
+  );
 };

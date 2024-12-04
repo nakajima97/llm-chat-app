@@ -3,14 +3,18 @@ import type { ChatLogType } from '../../types';
 import { ChatBubble } from '../ChatBubble';
 
 type Props = {
+  scrollRouteRef: React.RefObject<HTMLDivElement | null>;
   chatLog: ChatLogType;
+  handleScroll: () => void;
 };
 
-export const ChatLog = ({ chatLog }: Props) => {
+export const ChatLog = ({ scrollRouteRef, chatLog, handleScroll }: Props) => {
   const theme = useTheme();
 
   return (
     <Box
+      ref={scrollRouteRef}
+      onScroll={handleScroll}
       sx={{
         width: '100%',
         height: '100%',

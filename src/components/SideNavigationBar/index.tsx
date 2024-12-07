@@ -1,5 +1,6 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ChatIcon from '@mui/icons-material/Chat';
+import FolderIcon from '@mui/icons-material/Folder';
 import {
   Box,
   Divider,
@@ -23,6 +24,11 @@ export const SideNavigationBar = () => {
       text: 'スレッド一覧',
       icon: <ChatIcon />,
       path: '/threads',
+    },
+    {
+      text: 'データ一覧',
+      icon: <FolderIcon />,
+      path: '/data',
     },
   ];
 

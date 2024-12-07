@@ -4,13 +4,17 @@ import type { GridColDef } from '@mui/x-data-grid';
 
 export const DataList = () => {
   const columns: GridColDef[] = [
-    { field: 'title', headerName: 'Title', flex: 1 },
+    { field: 'title', headerName: 'タイトル', flex: 1 },
     {
       field: 'actions',
       type: 'actions',
-      headerName: 'Actions',
+      headerName: '詳細',
       width: 100,
-      getActions: (params) => [<Button key={params.id}>詳細</Button>],
+      getActions: (params) => [
+        <Button key={params.id} variant="outlined" color="primary">
+          開く
+        </Button>,
+      ],
     },
   ];
 

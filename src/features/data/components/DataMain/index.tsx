@@ -1,7 +1,7 @@
 import { Box, Button, useTheme } from '@mui/material';
 import { DataAdd } from '../DataAdd';
-import { DataList } from '../DataList';
 import { DataSearchForm } from '../DataSearchForm';
+import { DataList } from '../DataTable';
 
 export const DataMain = () => {
   const theme = useTheme();

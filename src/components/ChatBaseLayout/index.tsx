@@ -37,7 +37,10 @@ export const ChatBaseLayout = ({
         >
           {navigationBarContent}
         </Box>
-        <Box component="main" sx={{ flexGrow: 1, height: '100%' }}>
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, height: '100%', padding: theme.spacing(2) }}
+        >
           {children}
         </Box>
       </Box>

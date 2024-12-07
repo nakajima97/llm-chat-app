@@ -1,5 +1,6 @@
 import { ChatBaseLayout } from '@/components/ChatBaseLayout';
 import { SideNavigationBar } from '@/components/SideNavigationBar';
+import { DataMain } from '@/features/data/components/DataMain';
 
 export const DataTemplate: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ export const DataTemplate: React.FC = () => {
       title="データ一覧"
       navigationBarContent={<SideNavigationBar />}
     >
-      データ一覧
+      <DataMain />
     </ChatBaseLayout>
   );
 };

@@ -15,6 +15,7 @@ export const ChatMainContainer = () => {
   const { threadId, setThreadId, getThreadId } = useThreadId();
 
   const { fetchThreadMessages } = useThreadMessages();
+  console.log({ threadId });
   const { data, refetch } = fetchThreadMessages(threadId);
   const chatLog = data ?? [];
 

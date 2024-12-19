@@ -26,7 +26,9 @@ export const ThreadList = ({ threads }: Props) => {
       <List sx={{ width: '100%', maxWidth: 360 }}>
         {threads.map((thread) => (
           <ListItem key={thread.id}>
-            <ListItemButton onClick={() => router.push(`/chat/${thread.id}`)}>
+            <ListItemButton
+              onClick={() => router.push(`/chat?thread-id=${thread.id}`)}
+            >
               <ListItemText primary={thread.title} />
             </ListItemButton>
           </ListItem>

@@ -28,6 +28,8 @@ export const useThreadId = () => {
       const queryThreadId = searchParams.get('thread-id');
       if (queryThreadId) {
         setThreadId(queryThreadId);
+      } else {
+        setThreadId(undefined);
       }
     }
   }, [router.isReady, searchParams]);

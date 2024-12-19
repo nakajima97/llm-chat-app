@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
 import { useSendChat } from '../../hooks/useSendChat';
 import type { SendChatArgument } from '../../hooks/useSendChat';
 import { useThreadId } from '../../hooks/useThreadId';

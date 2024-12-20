@@ -31,6 +31,7 @@ export const ChatMainContainer = () => {
 
     if (latestThreadId !== threadId) {
       setThreadId(latestThreadId);
+      clearLatestAnswer();
     }
   };
 

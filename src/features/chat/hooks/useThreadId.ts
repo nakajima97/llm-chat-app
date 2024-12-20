@@ -51,9 +51,13 @@ export const useThreadId = () => {
         undefined,
         { shallow: true },
       );
+
+      if (threadId !== id) {
+        setThreadId(id);
+      }
     },
-    [replace],
+    [replace, threadId],
   );
 
-  return { threadId, setThreadId, getThreadId };
+  return { threadId, updateUrl, getThreadId };
 };

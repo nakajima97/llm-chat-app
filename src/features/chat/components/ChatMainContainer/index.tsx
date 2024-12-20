@@ -10,7 +10,7 @@ export const ChatMainContainer = () => {
   const { sendChat, latestQuestion, latestAnswer, clearLatestAnswer } =
     useSendChat();
 
-  const { threadId, setThreadId, getThreadId } = useThreadId();
+  const { threadId, updateUrl } = useThreadId();
 
   const { fetchThreadMessages } = useThreadMessages();
   const { data, refetch } = fetchThreadMessages(threadId);
@@ -21,7 +21,6 @@ export const ChatMainContainer = () => {
    * @param {SendChatArgument} param0 - 送信するメッセージ。
    */
   const handleSendChat = async ({ message }: SendChatArgument) => {
-    const threadId = getThreadId();
     if (threadId) {
       refetch();
       clearLatestAnswer();
@@ -29,8 +28,8 @@ export const ChatMainContainer = () => {
 
     const latestThreadId = await sendChat({ message, threadId });
 
-    if (latestThreadId !== threadId) {
-      setThreadId(latestThreadId);
+    if (latestThreadId && latestThreadId !== threadId) {
+      updateUrl(latestThreadId);
       clearLatestAnswer();
     }
   };

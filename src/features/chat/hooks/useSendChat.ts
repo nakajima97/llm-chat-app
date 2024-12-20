@@ -1,4 +1,7 @@
+import { axiosInstance } from '@/lib/axios';
+import { useMutation } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
+import { postChatSSE } from '../api/postChatSSE';
 
 export type SendChatArgument = {
   message: string;
@@ -19,64 +22,49 @@ export const useSendChat = () => {
       setLatestQuestion(message);
 
       const optionalQuery = threadId ? `&thread_id=${threadId}` : '';
+      let newThreadId: string | undefined = undefined;
 
-      const response = await fetch(
-        `http://localhost:8000/chat/sse?text=${message}${optionalQuery}`,
-        {
-          method: 'GET',
+      try {
+        await axiosInstance.get(`/chat/sse?text=${message}${optionalQuery}`, {
           headers: {
             'Content-Type': 'application/json',
             Accept: 'text/event-stream',
           },
-        },
-      );
+          responseType: 'stream',
+          onDownloadProgress: (progressEvent) => {
+            const chunk = progressEvent.event.target.response;
+            if (!chunk) return;
 
-      // エラーハンドリング
-      if (!response.ok) {
+            const lines = chunk
+              .split('data: ')
+              .map((line: string) => line.trim())
+              .filter((s: string) => s);
+
+            for (const json of lines) {
+              try {
+                if (json === '[DONE]') {
+                  return;
+                }
+                const data = JSON.parse(json);
+                const text = data.content;
+
+                setLatestAnswer(text);
+
+                if (!newThreadId && data.thread_id) {
+                  newThreadId = data.thread_id;
+                }
+              } catch (error) {
+                console.error('Error parsing JSON:', error);
+              }
+            }
+          },
+        });
+
+        return newThreadId;
+      } catch (error) {
+        console.error('Failed to send chat message:', error);
         throw new Error('Failed to send chat message');
       }
-
-      const reader = response.body?.getReader();
-      const decoder = new TextDecoder('utf-8');
-
-      if (!reader) {
-        throw new Error('Failed to send chat message');
-      }
-
-      // 戻り値用にスレッドIDを初期化
-      let newThreadId = undefined;
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        if (!value) continue;
-
-        const lines = decoder.decode(value);
-        const jsons = lines
-          .split('data: ') // 各行は data: というキーワードで始まる
-          .map((line) => line.trim())
-          .filter((s) => s); // 余計な空行を取り除く
-
-        for (const json of jsons) {
-          try {
-            if (json === '[DONE]') {
-              return newThreadId; // 終端記号
-            }
-            const chunk = JSON.parse(json);
-            const text = chunk.content;
-
-            setLatestAnswer(text);
-
-            // スレッドIDを保存
-            if (!newThreadId && chunk.thread_id) {
-              newThreadId = chunk.thread_id;
-            }
-          } catch (error) {
-            console.error(error);
-          }
-        }
-      }
-      return newThreadId;
     },
     [],
   );

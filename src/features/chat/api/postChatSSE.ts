@@ -1,31 +1,39 @@
 import { axiosInstance } from '@/lib/axios';
+import type { SendChatArgument } from '../hooks/useSendChat';
 
-type PostChatSSEArgument = {
-  message: string;
-  threadId?: string;
-};
-
-/**
- * Sends a GET request to the `/chat/sse` endpoint to initiate a Server-Sent Events (SSE) connection.
- *
- * @param {PostChatSSEArgument} param - The argument object containing the message and optional threadId.
- * @param {string} param.message - The message to be sent.
- * @param {string} [param.threadId] - The optional thread ID to associate with the message.
- *
- * @returns {Promise<AxiosResponse<any>>} - A promise that resolves to the Axios response containing the SSE stream.
- */
-export const postChatSSE = async ({
+export const postChatSSE = ({
   message,
   threadId,
-}: PostChatSSEArgument) => {
-  return axiosInstance.get(
-    `/chat/sse?text=${message}${threadId ? `&thread_id=${threadId}` : ''}`,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'text/event-stream',
-      },
-      responseType: 'stream',
+  onMessage,
+}: SendChatArgument & {
+  onMessage: (text: string, threadId?: string) => void;
+}) => {
+  const optionalQuery = threadId ? `&thread_id=${threadId}` : '';
+
+  return axiosInstance.get(`/chat/sse?text=${message}${optionalQuery}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'text/event-stream',
     },
-  );
+    responseType: 'stream',
+    onDownloadProgress: (progressEvent) => {
+      const chunk = progressEvent.event.target.response;
+      if (!chunk) return;
+
+      const lines = chunk
+        .split('data: ')
+        .map((line: string) => line.trim())
+        .filter((s: string) => s);
+
+      for (const json of lines) {
+        try {
+          if (json === '[DONE]') return;
+          const data = JSON.parse(json);
+          onMessage(data.content, data.thread_id);
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+        }
+      }
+    },
+  });
 };

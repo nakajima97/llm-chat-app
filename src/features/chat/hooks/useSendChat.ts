@@ -16,7 +16,10 @@ export const useSendChat = () => {
    * チャットメッセージを送信する
    */
   const sendChat = useCallback(
-    async ({ message, threadId }: SendChatArgument) => {
+    async ({
+      message,
+      threadId,
+    }: SendChatArgument): Promise<string | undefined> => {
       setLatestQuestion(message);
       let newThreadId: string | undefined = undefined;
 

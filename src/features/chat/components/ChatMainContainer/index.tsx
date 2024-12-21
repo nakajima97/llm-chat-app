@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSendChat } from '../../hooks/useSendChat';
 import type { SendChatArgument } from '../../hooks/useSendChat';
 import { useThreadId } from '../../hooks/useThreadId';
@@ -15,6 +16,12 @@ export const ChatMainContainer = () => {
   const { fetchThreadMessages } = useThreadMessages();
   const { data, refetch } = fetchThreadMessages(threadId);
   const chatLog = data ?? [];
+
+  useEffect(() => {
+    if (!threadId) {
+      clearLatestAnswer();
+    }
+  }, [threadId, clearLatestAnswer]);
 
   /**
    * チャットメッセージを送信します。

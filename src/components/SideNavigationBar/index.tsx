@@ -1,19 +1,15 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ChatIcon from '@mui/icons-material/Chat';
 import FolderIcon from '@mui/icons-material/Folder';
-import {
-  Box,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Typography,
-} from '@mui/material';
+import { Box, Divider, List, Typography } from '@mui/material';
+import { useRouter } from 'next/router';
 import { NavigationItem } from './components/NavigationItem';
 import { ThreadItem } from './components/ThreadItem';
 
 export const SideNavigationBar = () => {
+  const router = useRouter();
+  const currentPath = router.pathname;
+
   const navigationItems = [
     {
       text: '新規チャット',
@@ -75,6 +71,7 @@ export const SideNavigationBar = () => {
             title={item.text}
             icon={item.icon}
             link={item.path}
+            selected={currentPath.includes(item.path)}
           />
         ))}
       </List>

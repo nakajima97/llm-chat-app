@@ -10,9 +10,10 @@ type Props = {
   title: string;
   icon: React.ReactNode;
   link: string;
+  selected: boolean;
 };
 
-export const NavigationItem = ({ title, icon, link }: Props) => {
+export const NavigationItem = ({ title, icon, link, selected }: Props) => {
   const router = useRouter();
 
   return (
@@ -20,6 +21,7 @@ export const NavigationItem = ({ title, icon, link }: Props) => {
       onClick={() => {
         router.push(link);
       }}
+      selected={selected}
     >
       <ListItem>
         <ListItemIcon>{icon}</ListItemIcon>

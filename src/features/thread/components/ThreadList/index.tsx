@@ -1,5 +1,7 @@
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -14,6 +16,11 @@ type Props = {
 
 export const ThreadList = ({ threads }: Props) => {
   const router = useRouter();
+
+  const handleDelete = (id: string) => {
+    // Implement delete functionality here
+    console.log(`Delete thread with id: ${id}`);
+  };
 
   return (
     <Box
@@ -31,6 +38,13 @@ export const ThreadList = ({ threads }: Props) => {
             >
               <ListItemText primary={thread.title} />
             </ListItemButton>
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => handleDelete(thread.id)}
+            >
+              <DeleteIcon />
+            </IconButton>
           </ListItem>
         ))}
       </List>

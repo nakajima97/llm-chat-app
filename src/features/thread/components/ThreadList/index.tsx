@@ -12,15 +12,11 @@ import type { ThreadListType } from '../../types';
 
 type Props = {
   threads: ThreadListType;
+  handleDelete: (id: string) => void;
 };
 
-export const ThreadList = ({ threads }: Props) => {
+export const ThreadList = ({ threads, handleDelete }: Props) => {
   const router = useRouter();
-
-  const handleDelete = (id: string) => {
-    // Implement delete functionality here
-    console.log(`Delete thread with id: ${id}`);
-  };
 
   return (
     <Box

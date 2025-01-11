@@ -6,10 +6,11 @@ export const ThreadListContainer = () => {
   const { fetchThreadList } = useFetchThreadList();
   const { mutate } = useDeleteThread();
 
-  const { data } = fetchThreadList();
+  const { data, refetch } = fetchThreadList();
 
   const handleDelete = (id: string) => {
     mutate(id);
+    refetch();
   };
 
   return <ThreadList threads={data ?? []} handleDelete={handleDelete} />;

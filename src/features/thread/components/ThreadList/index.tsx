@@ -1,6 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
+  Button,
   IconButton,
   List,
   ListItem,
@@ -13,9 +14,14 @@ import type { ThreadListType } from '../../types';
 type Props = {
   threads: ThreadListType;
   handleDelete: (id: string) => void;
+  handleAllDelete: () => void;
 };
 
-export const ThreadList = ({ threads, handleDelete }: Props) => {
+export const ThreadList = ({
+  threads,
+  handleDelete,
+  handleAllDelete,
+}: Props) => {
   const router = useRouter();
 
   return (
@@ -24,8 +30,20 @@ export const ThreadList = ({ threads, handleDelete }: Props) => {
         width: '100%',
         height: '100%',
         overflowY: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
+      <Box>
+        <Button
+          variant="contained"
+          color="error"
+          onClick={() => handleAllDelete()}
+          startIcon={<DeleteIcon />}
+        >
+          すべてのスレッドを削除する
+        </Button>
+      </Box>
       <List sx={{ width: '100%' }}>
         {threads.map((thread) => (
           <ListItem key={thread.id}>

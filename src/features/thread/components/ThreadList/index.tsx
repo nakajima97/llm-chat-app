@@ -30,7 +30,7 @@ export const ThreadList = ({ threads }: Props) => {
         overflowY: 'auto',
       }}
     >
-      <List sx={{ width: '100%', maxWidth: 360 }}>
+      <List sx={{ width: '100%' }}>
         {threads.map((thread) => (
           <ListItem key={thread.id}>
             <ListItemButton
